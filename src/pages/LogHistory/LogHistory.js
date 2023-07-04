@@ -51,20 +51,26 @@ const LogHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // State to keep track of whether logs needs to be fetched
-  const [logsFetched, setLogsFetched] = useState(false);
+  const [fetchLogs, setFetchLogs] = useState(false);
 
   useEffect(() => {
     // Fetch logs only if they haven't been fetched yet
-    if (!logsFetched) {
-      setLogsFetched(true);
+    if (!fetchLogs) {
+      setFetchLogs(true);
     }
-  }, [logsFetched]);
+  }, [fetchLogs]);
 
   useEffect(() => {
-    if (logsFetched || resetLogs) {
+    if (fetchLogs) {
       dispatch(fetchLogHistoriesAsync({ page: 1 }));
     }
-  }, [dispatch, logsFetched, resetLogs]);
+  }, [dispatch, fetchLogs]);
+
+  useEffect(() => {
+    if (resetLogs) {
+      dispatch(fetchLogHistoriesAsync({ page: 1 }));
+    }
+  }, [dispatch, resetLogs]);
 
   // Function to load more logs when theoffset bottom of the page is reached
   const handleLoadMore = useCallback(() => {
