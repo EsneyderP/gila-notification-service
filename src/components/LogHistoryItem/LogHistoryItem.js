@@ -19,6 +19,11 @@ const useStyles = makeStyles(() => ({
         backgroundColor: 'lightblue',
         border: '1px blue solid',
     },
+    warningChip: {
+        color: 'orange',
+        backgroundColor: '#fff6de',
+        border: '1px orange solid',
+    },
     sentChip: {
         color: '#2fc134',
         backgroundColor: '#b4ffb4',
@@ -44,8 +49,9 @@ const LogHistoryItem = ({
             case 'pending':
                 return classes.pendingChip;
             case 'failed':
-            case 'with-issues':
                 return classes.errorChip;
+            case 'with-issues':
+                return classes.warningChip;
             default:
                 return classes.activeChip;
         }
