@@ -1,0 +1,29 @@
+{
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true   // Add this line
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:jest/recommended"  // Add this line
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-hooks",
+      "jsx-a11y",
+      "jest"  // Add this line
+    ],
+    "rules": {
+      // Add your custom rules here, if needed
+    }
+}
+  
