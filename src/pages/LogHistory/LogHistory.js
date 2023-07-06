@@ -45,10 +45,9 @@ const LogHistory = () => {
   const totalLogs = useSelector((state) => state.logHistories.total);
   const loadingLogs = useSelector((state) => state.logHistories.loading);
   const resetLogs = useSelector((state) => state.logHistories.reset);
-  const disableLoadButton = totalLogs <= logs.length;
-
   // State to track the number of logs to display initially and on each load more
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.logHistories.currentPage);
+  const disableLoadButton = totalLogs <= logs.length;
 
   // State to keep track of whether logs needs to be fetched
   const [fetchLogs, setFetchLogs] = useState(false);
@@ -75,7 +74,6 @@ const LogHistory = () => {
   // Function to load more logs when theoffset bottom of the page is reached
   const handleLoadMore = useCallback(() => {
     // Increment the current page and fetch more logs
-    setCurrentPage((prevPage) => prevPage + 1);
     dispatch(fetchLogHistoriesAsync({ page: currentPage + 1 }));
   }, [dispatch, currentPage]);
 

@@ -4,6 +4,7 @@ import { fetchLogHistories } from "./actions";
 const initialState = {
     list: [],
     total: 0,
+    currentPage: 1,
     loading: false,
     error: null,
     reset: false,
@@ -17,6 +18,7 @@ const logHistorySlice = createSlice({
         state.list = [];
         state.total = 0;
         state.reset = true;
+        state.currentPage = 1;
     },
   },
   extraReducers: (builder) => {
@@ -29,6 +31,7 @@ const logHistorySlice = createSlice({
       .addCase(fetchLogHistories.fulfilled, (state, action) => {
         state.list = [...state.list, ...action.payload.data];
         state.total = action.payload.total;
+        state.currentPage = action.payload.currentPage;
         state.loading = false; // Set loading to false when the async operation is fulfilled
         state.reset = false;
         state.error = null;
